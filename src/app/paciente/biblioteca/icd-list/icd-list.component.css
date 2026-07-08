@@ -1,0 +1,144 @@
+/* Estilos para el componente ICD List */
+.icd-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.icd-container h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  padding: 20px;
+}
+
+.error {
+  text-align: center;
+  font-size: 16px;
+  color: #d9534f;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  border-radius: 4px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.data-container {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.data-container h3 {
+  color: #495057;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Estilos para capítulos */
+.chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.chapter-card {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-left: 4px solid #007bff;
+  border-radius: 4px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chapter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.chapter-header h4 {
+  margin: 0;
+  color: #007bff;
+  font-size: 16px;
+  flex: 1;
+}
+
+.code {
+  background-color: #e8f0ff;
+  color: #0056b3;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+/* Estilos para categorías */
+.categories {
+  margin-top: 10px;
+}
+
+.categories ul {
+  list-style: none;
+  padding-left: 10px;
+  margin: 10px 0 0 0;
+}
+
+.category-item {
+  padding: 8px 10px;
+  border-left: 2px solid #ddd;
+  margin-bottom: 8px;
+  color: #495057;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-item strong {
+  color: #333;
+  flex: 1;
+}
+
+.category-code {
+  background-color: #f0f0f0;
+  color: #666;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 11px;
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+.no-data {
+  text-align: center;
+  font-size: 16px;
+  color: #6c757d;
+  padding: 20px;
+}

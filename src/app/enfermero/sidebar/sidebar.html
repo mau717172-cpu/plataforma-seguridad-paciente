@@ -1,0 +1,13 @@
+<nav class="sidebar">
+  <ul class="menu-list">
+    <li *ngFor="let item of menuItems" class="menu-item">
+      <button
+        class="menu-link"
+        [class.active]="isActive(item.route)"
+        (click)="navigate(item.route)">
+        <mat-icon class="menu-icon">{{ item.icon }}</mat-icon>
+        <span class="menu-label">{{ item.label }}</span>
+      </button>
+    </li>
+  </ul>
+</nav>

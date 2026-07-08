@@ -1,0 +1,61 @@
+<!-- Contenedor principal del componente ICD List -->
+<div class="icd-container">
+  <!-- Título del componente -->
+  <h2>Lista de Códigos ICD-11</h2>
+
+  <!-- Campo de búsqueda opcional para filtrar términos médicos -->
+  <div class="search-container">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="onSearch()"
+      placeholder="Buscar términos médicos..."
+      class="search-input"
+    />
+  </div>
+
+  <!-- Mostrar mensaje de carga mientras se obtienen los datos -->
+  <div *ngIf="loading" class="loading">
+    Cargando códigos ICD...
+  </div>
+
+  <!-- Mostrar mensaje de error si ocurre un problema -->
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <!-- Mostrar los datos formateados (no JSON crudo) -->
+  <div *ngIf="!loading && !error && filteredData" class="data-container">
+    <h3>Códigos ICD-11 Disponibles:</h3>
+
+    <!-- Mostrar capítulos -->
+    <div *ngIf="filteredData.child && filteredData.child.length > 0" class="chapters">
+      <div *ngFor="let chapter of filteredData.child" class="chapter-card">
+        <div class="chapter-header">
+          <h4>{{ chapter.title['@value'] }}</h4>
+          <span class="code">{{ chapter['@id'] | slice:35 }}</span>
+        </div>
+
+        <!-- Mostrar categorías dentro del capítulo -->
+        <div *ngIf="chapter.child && chapter.child.length > 0" class="categories">
+          <ul>
+            <li *ngFor="let category of chapter.child" class="category-item">
+              <strong>{{ category.title['@value'] }}</strong>
+              <span class="category-code">{{ category['@id'] | slice:35 }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Si no hay capítulos, mostrar mensaje -->
+    <div *ngIf="!filteredData.child || filteredData.child.length === 0" class="no-data">
+      No se encontraron capítulos.
+    </div>
+  </div>
+
+  <!-- Mensaje si no hay datos después del filtro -->
+  <div *ngIf="!loading && !error && !filteredData" class="no-data">
+    No se encontraron datos que coincidan con tu búsqueda.
+  </div>
+</div>

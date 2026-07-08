@@ -1,0 +1,48 @@
+<div class="page-layout">
+  <app-header [currentPage]="'Mi perfil'" [parentPage]="'Menú Principal'"></app-header>
+  <div class="content-wrapper">
+    <app-sidebar></app-sidebar>
+    <main class="main-content">
+      <div class="page-container">
+        <h2>Mi Perfil</h2>
+        <p>Revisa tu información y el estado de tus asignaciones médicas.</p>
+
+        <div class="profile-grid">
+          <div class="profile-card">
+            <span class="card-label">Id</span>
+            <strong>{{ profile.id || '—' }}</strong>
+          </div>
+          <div class="profile-card">
+            <span class="card-label">Nombre</span>
+            <strong>{{ profile.name || '—' }}</strong>
+          </div>
+          <div class="profile-card wide-card">
+            <span class="card-label">Área médica asignada</span>
+            <strong>{{ profile.medicalArea || '—' }}</strong>
+          </div>
+          <div class="profile-card wide-card">
+            <span class="card-label">Simulaciones recomendadas</span>
+            <ul class="item-list">
+              <li class="item" *ngFor="let simulation of profile.recommendedSimulations">{{ simulation }}</li>
+              <li class="empty-note" *ngIf="profile.recommendedSimulations.length === 0">No hay simulaciones recomendadas.</li>
+            </ul>
+          </div>
+          <div class="profile-card wide-card">
+            <span class="card-label">Reportes adjuntos</span>
+            <ul class="item-list">
+              <li class="item" *ngFor="let report of profile.attachedReports">{{ report }}</li>
+              <li class="empty-note" *ngIf="profile.attachedReports.length === 0">No hay reportes adjuntos.</li>
+            </ul>
+          </div>
+          <div class="profile-card wide-card">
+            <span class="card-label">Próximas citas</span>
+            <ul class="item-list">
+              <li class="item" *ngFor="let appointment of profile.upcomingAppointments">{{ appointment }}</li>
+              <li class="empty-note" *ngIf="profile.upcomingAppointments.length === 0">No hay citas programadas.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

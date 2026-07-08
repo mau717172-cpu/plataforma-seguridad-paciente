@@ -1,0 +1,59 @@
+<div class="page-layout">
+  <app-header [currentPage]="'Reportes'" [parentPage]="'Menú Principal'"></app-header>
+  <div class="content-wrapper">
+    <app-sidebar></app-sidebar>
+    <main class="main-content">
+      <div class="page-container">
+        <div class="reportes-card">
+          <h2>Reportes</h2>
+          <p>Selecciona un paciente para revisar reportes pendientes y los reportes ya enviados.</p>
+
+          <div class="form-group">
+            <label for="patientSelect">Paciente</label>
+            <select id="patientSelect" [(ngModel)]="selectedPatient">
+              <option value="">-- Seleccionar paciente --</option>
+              <option *ngFor="let patient of patients" [value]="patient">{{ patient }}</option>
+            </select>
+          </div>
+
+          <div *ngIf="selectedPatient" class="reports-layout">
+            <div class="report-section">
+              <div class="section-header">
+                <h3>Reportes pendientes</h3>
+                <span class="patient-tag">{{ selectedPatient }}</span>
+              </div>
+              <div class="report-list">
+                <div class="report-item" *ngFor="let report of pendingReports">
+                  <div>
+                    <strong>{{ report.title }}</strong>
+                    <p class="report-status">{{ report.status }}</p>
+                  </div>
+                  <button class="btn-secondary" type="button">Rellenar</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="report-section">
+              <div class="section-header">
+                <h3>Reportes enviados</h3>
+                <span class="patient-tag">{{ selectedPatient }}</span>
+              </div>
+              <div class="report-list">
+                <div class="report-item" *ngFor="let report of sentReports">
+                  <div>
+                    <strong>{{ report.title }}</strong>
+                    <p class="report-status sent">{{ report.status }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="!selectedPatient" class="empty-message">
+            Selecciona un paciente para mostrar los reportes correspondientes.
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

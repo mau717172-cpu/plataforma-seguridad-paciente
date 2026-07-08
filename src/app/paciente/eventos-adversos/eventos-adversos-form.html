@@ -1,0 +1,184 @@
+<div class="page-layout">
+  <app-header [currentPage]="'Reporte de eventos adversos'" [parentPage]="'Menú Principal'"></app-header>
+  <div class="content-wrapper">
+    <app-sidebar></app-sidebar>
+    <main class="main-content">
+      <div class="page-container">
+        <div class="form-card">
+          <div class="form-header">
+            <div>
+              <h2>Reporte de eventos adversos</h2>
+              <p>Revise los datos del paciente y complete el formulario antes de enviar.</p>
+            </div>
+            <button class="btn-secondary" type="button" (click)="goBack()">Volver</button>
+          </div>
+
+          <div class="patient-summary">
+            <div class="summary-item">
+              <span class="label">ID del paciente</span>
+              <strong>{{ patientId || '---' }}</strong>
+            </div>
+            <div class="summary-item">
+              <span class="label">Nombre de paciente</span>
+              <strong>{{ patientInfo.name }}</strong>
+            </div>
+            <div class="summary-item">
+              <span class="label">Género</span>
+              <strong>{{ patientInfo.gender }}</strong>
+            </div>
+            <div class="summary-item">
+              <span class="label"># de paciente</span>
+              <strong>{{ patientInfo.number }}</strong>
+            </div>
+          </div>
+
+          <div class="form-body">
+            <section class="section-card">
+              <h3>{{ selectedPhase | titlecase }}</h3>
+              <div class="form-fields">
+                <div class="form-group-wrapper" *ngFor="let section of preoperativeChecks">
+                  <div class="form-sub-group" *ngIf="section.groupName">
+                    <h4 class="sub-group-title">{{ section.groupName }}</h4>
+                    <div class="field-group" *ngFor="let item of section.fields">
+                      <label>{{ item.label }}</label>
+
+                      <textarea *ngIf="item.type === 'textarea'" [(ngModel)]="item.value" rows="3" placeholder="Ingrese detalles..."></textarea>
+                      <input *ngIf="item.type === 'text'" type="text" [(ngModel)]="item.value" placeholder="Ingrese dato..." />
+                      <input *ngIf="item.type === 'number'" type="number" [(ngModel)]="item.value" placeholder="Ingrese valor..." />
+                      <select *ngIf="item.type === 'select'" [(ngModel)]="item.value">
+                        <option value="">-- Seleccionar --</option>
+                        <option *ngFor="let opt of item.options" [value]="opt">{{ opt }}</option>
+                      </select>
+                      <div *ngIf="item.type === 'radio'" class="radio-group">
+                        <label class="radio-field" *ngFor="let opt of item.options">
+                          <input type="radio" [name]="item.label" [value]="opt" [(ngModel)]="item.value" />
+                          {{ opt }}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ng-container *ngIf="!section.groupName">
+                    <div class="field-group" *ngFor="let item of section.fields">
+                      <label>{{ item.label }}</label>
+
+                      <textarea *ngIf="item.type === 'textarea'" [(ngModel)]="item.value" rows="3" placeholder="Ingrese detalles..."></textarea>
+                      <input *ngIf="item.type === 'text'" type="text" [(ngModel)]="item.value" placeholder="Ingrese dato..." />
+                      <input *ngIf="item.type === 'number'" type="number" [(ngModel)]="item.value" placeholder="Ingrese valor..." />
+                      <select *ngIf="item.type === 'select'" [(ngModel)]="item.value">
+                        <option value="">-- Seleccionar --</option>
+                        <option *ngFor="let opt of item.options" [value]="opt">{{ opt }}</option>
+                      </select>
+                      <div *ngIf="item.type === 'radio'" class="radio-group">
+                        <label class="radio-field" *ngFor="let opt of item.options">
+                          <input type="radio" [name]="item.label" [value]="opt" [(ngModel)]="item.value" />
+                          {{ opt }}
+                        </label>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </section>
+
+            <section class="section-card">
+              <h3>Medicamentos</h3>
+              <div class="form-fields">
+                <div class="field-group" *ngFor="let item of medicationChecks">
+                  <label>{{ item.label }}</label>
+
+                  <textarea *ngIf="item.type === 'textarea'" [(ngModel)]="item.value" rows="3" placeholder="Ingrese detalles..."></textarea>
+                  <input *ngIf="item.type === 'text'" type="text" [(ngModel)]="item.value" placeholder="Ingrese dato..." />
+                  <input *ngIf="item.type === 'number'" type="number" [(ngModel)]="item.value" placeholder="Ingrese valor..." />
+                  <select *ngIf="item.type === 'select'" [(ngModel)]="item.value">
+                    <option value="">-- Seleccionar --</option>
+                    <option *ngFor="let opt of item.options" [value]="opt">{{ opt }}</option>
+                  </select>
+                  <div *ngIf="item.type === 'radio'" class="radio-group">
+                    <label class="radio-field" *ngFor="let opt of item.options">
+                      <input type="radio" [name]="item.label" [value]="opt" [(ngModel)]="item.value" />
+                      {{ opt }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <h3>Psicosocial</h3>
+              <div class="form-fields">
+                <div class="field-group" *ngFor="let item of psychosocialChecks">
+                  <label>{{ item.label }}</label>
+
+                  <textarea *ngIf="item.type === 'textarea'" [(ngModel)]="item.value" rows="3" placeholder="Ingrese detalles..."></textarea>
+                  <input *ngIf="item.type === 'text'" type="text" [(ngModel)]="item.value" placeholder="Ingrese dato..." />
+                  <input *ngIf="item.type === 'number'" type="number" [(ngModel)]="item.value" placeholder="Ingrese valor..." />
+                  <select *ngIf="item.type === 'select'" [(ngModel)]="item.value">
+                    <option value="">-- Seleccionar --</option>
+                    <option *ngFor="let opt of item.options" [value]="opt">{{ opt }}</option>
+                  </select>
+                  <div *ngIf="item.type === 'radio'" class="radio-group">
+                    <label class="radio-field" *ngFor="let opt of item.options">
+                      <input type="radio" [name]="item.label" [value]="opt" [(ngModel)]="item.value" />
+                      {{ opt }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="section-card">
+              <h3>Información adicional</h3>
+              <div class="form-fields">
+                <div class="field-group">
+                  <label for="requiereSeguimiento">¿Requiere seguimiento?</label>
+                  <div class="radio-group">
+                    <label class="radio-field">
+                      <input type="radio" name="seguimiento" [value]="true" [(ngModel)]="requiereSeguimiento" />
+                      Sí
+                    </label>
+                    <label class="radio-field">
+                      <input type="radio" name="seguimiento" [value]="false" [(ngModel)]="requiereSeguimiento" />
+                      No
+                    </label>
+                  </div>
+                </div>
+                <div class="field-group">
+                  <label for="observaciones">Observaciones</label>
+                  <textarea id="observaciones" [(ngModel)]="observaciones" placeholder="Ingrese observaciones adicionales..."></textarea>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="phase-buttons">
+            <button
+              type="button"
+              class="phase-btn"
+              [class.active]="selectedPhase === 'preoperatorio'"
+              (click)="selectPhase('preoperatorio')">
+              Preoperatorio
+            </button>
+            <button
+              type="button"
+              class="phase-btn"
+              [class.active]="selectedPhase === 'operatorio'"
+              (click)="selectPhase('operatorio')">
+              Operatorio
+            </button>
+            <button
+              type="button"
+              class="phase-btn"
+              [class.active]="selectedPhase === 'postoperatorio'"
+              (click)="selectPhase('postoperatorio')">
+              Postoperatorio
+            </button>
+          </div>
+
+          <div class="form-footer">
+            <button class="btn-secondary" type="button" (click)="goBack()">Cancelar</button>
+            <button class="btn-primary" type="button" (click)="submitReport()">Guardar reporte</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

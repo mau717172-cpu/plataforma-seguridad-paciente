@@ -1,0 +1,22 @@
+<div class="header-container">
+  <div class="header-left">
+    <div class="breadcrumbs">
+      <span class="page-title">{{ currentPage }}</span>
+      <span class="breadcrumb-separator" *ngIf="parentPage">&gt;</span>
+      <button
+        mat-button
+        class="breadcrumb-link"
+        (click)="navigateToHome()"
+        *ngIf="parentPage">
+        {{ parentPage }}
+      </button>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="user-role" *ngIf="userRole" [style.background-color]="roleColor">
+      <span class="role-text">{{ userRole }}</span>
+    </div>
+    <mat-icon class="hospital-icon">local_hospital</mat-icon>
+    <span class="hospital-text">HOSPITAL</span>
+  </div>
+</div>

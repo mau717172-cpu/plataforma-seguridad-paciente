@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "nombre": "Protocolo de Reanimación Cardiopulmonar (RCP)",
+    "descripcion": "Procedimiento para restaurar la circulación sanguínea y la respiración en una persona que ha sufrido un paro cardíaco.",
+    "pasos": [
+      "Verificar la seguridad del entorno.",
+      "Comprobar la respuesta de la víctima.",
+      "Llamar a emergencias si no responde.",
+      "Iniciar compresiones torácicas: 30 compresiones a un ritmo de 100-120 por minuto.",
+      "Proporcionar ventilaciones: 2 respiraciones después de cada 30 compresiones.",
+      "Continuar hasta que llegue ayuda médica o la víctima responda."
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Protocolo de Manejo de Hipoglucemia",
+    "descripcion": "Procedimiento para tratar niveles bajos de azúcar en la sangre en pacientes diabéticos.",
+    "pasos": [
+      "Evaluar los síntomas: temblor, sudoración, confusión.",
+      "Medir el nivel de glucosa en sangre si es posible.",
+      "Administrar glucosa rápida: 15-20g de carbohidratos simples (jugo, tabletas de glucosa).",
+      "Esperar 15 minutos y reevaluar.",
+      "Si no mejora, repetir o buscar atención médica.",
+      "Monitorear al paciente y educar sobre prevención."
+    ]
+  }
+]

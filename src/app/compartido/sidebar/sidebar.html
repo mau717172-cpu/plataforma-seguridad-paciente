@@ -1,0 +1,13 @@
+<nav class="sidebar">
+  <ul class="menu-list">
+    <li *ngFor="let item of elementosMenu()" class="menu-item">
+      <button
+        class="menu-link"
+        [class.active]="esActivo(item.ruta)"
+        (click)="navegar(item.ruta)">
+        <mat-icon class="menu-icon">{{ item.icono }}</mat-icon>
+        <span class="menu-label">{{ item.etiqueta }}</span>
+      </button>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,93 @@
+<div class="page-layout">
+  <app-header [paginaActual]="'Atención del paciente'" [paginaPrincipal]="'Menú Principal'"></app-header>
+  <div class="content-wrapper">
+    <app-sidebar></app-sidebar>
+    <main class="main-content">
+      <div class="page-container">
+        <h2>Atención del Paciente</h2>
+        <div class="options-list">
+          <div class="option-row" *ngFor="let report of reports">
+            <button class="option-card" type="button" [class.active]="selectedReport === report" (click)="selectReport(report)">
+              <span>{{ report }}</span>
+              <mat-icon class="arrow">chevron_right</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="selectedReport === 'Reporte de población de lesiones'" class="report-layout">
+          <div class="form-group">
+            <label for="patientSelect">Selecciona un paciente</label>
+            <select id="patientSelect" [(ngModel)]="selectedPatient" (change)="selectPatient(selectedPatient)">
+              <option value="">-- Seleccionar paciente --</option>
+              <option *ngFor="let patient of patients" [value]="patient">{{ patient }}</option>
+            </select>
+          </div>
+
+          <div *ngIf="selectedPatient" class="report-details">
+            <div class="details-panel">
+              <div class="panel-header">
+                <h3>Lesiones externas</h3>
+              </div>
+              <div class="checkbox-grid">
+                <label *ngFor="let area of externalAreas" class="checkbox-item">
+                  <input type="checkbox" [(ngModel)]="area.checked" />
+                  {{ area.label }}
+                </label>
+              </div>
+              <button class="btn-primary" type="button" (click)="prepareReport()">Reportar</button>
+            </div>
+
+            <div class="details-panel">
+              <div class="panel-header">
+                <h3>Lesiones internas</h3>
+              </div>
+              <div class="checkbox-grid system-grid">
+                <div *ngFor="let system of internalSystems" class="system-block">
+                  <label class="checkbox-item">
+                    <input type="checkbox" [(ngModel)]="system.checked" (change)="toggleSystem(system)" />
+                    {{ system.label }}
+                  </label>
+                  <div *ngIf="system.selected" class="organ-list">
+                    <label *ngFor="let organ of system.organs" class="checkbox-item organ-item">
+                      <input type="checkbox" [(ngModel)]="organ.checked" />
+                      {{ organ.label }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <button class="btn-primary" type="button" (click)="prepareReport()">Reportar</button>
+            </div>
+          </div>
+
+          <div *ngIf="showReportForm" class="report-form-card">
+            <h3>Formulario de reporte</h3>
+            <div class="field-group">
+              <label>Tipo de lesión</label>
+              <input type="text" [(ngModel)]="reportForm.tipoLesion" placeholder="Tipo de lesión" />
+            </div>
+            <div class="field-group">
+              <label>Gravedad</label>
+              <input type="text" [(ngModel)]="reportForm.gravedad" placeholder="Gravedad" />
+            </div>
+            <div class="field-group">
+              <label>Riesgos</label>
+              <textarea [(ngModel)]="reportForm.riesgos" placeholder="Riesgos"></textarea>
+            </div>
+            <div class="field-group">
+              <label>Tratamiento sugerido</label>
+              <textarea [(ngModel)]="reportForm.tratamiento" placeholder="Tratamiento sugerido"></textarea>
+            </div>
+            <button class="btn-secondary" type="button" (click)="submitReport()">Enviar</button>
+          </div>
+        </div>
+
+        <div *ngIf="selectedReport === 'Consultas pendientes'" class="pending-list">
+          <h3>Pacientes en consultas pendientes</h3>
+          <div class="patient-item" *ngFor="let patient of patients">
+            {{ patient }}
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

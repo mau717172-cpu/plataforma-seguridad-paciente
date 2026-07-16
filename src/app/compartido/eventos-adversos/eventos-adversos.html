@@ -1,0 +1,19 @@
+<div class="page-layout">
+  <app-header [paginaActual]="'Eventos adversos'" [paginaPrincipal]="'Menú Principal'"></app-header>
+  <div class="content-wrapper">
+    <app-sidebar></app-sidebar>
+    <main class="main-content">
+      <div class="page-container">
+        <div class="search-card">
+          <h2>Reporte de eventos adversos</h2>
+          <p>Ingresa el ID del paciente y pulsa Buscar para acceder al formulario de reporte.</p>
+          <div class="search-box">
+            <input #idPacienteEntrada type="text" placeholder="ID del paciente" />
+            <button class="btn-red" type="button" (click)="buscarPaciente(idPacienteEntrada)">Buscar</button>
+          </div>
+          <p class="search-note">Por ahora el campo puede quedar vacío y se mostrará el formulario de reporte.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="header-container">
+  <div class="header-left">
+    <div class="breadcrumbs">
+      <span class="page-title">{{ paginaActual }}</span>
+      <span class="breadcrumb-separator" *ngIf="paginaPrincipal">&gt;</span>
+      <button
+        mat-button
+        class="breadcrumb-link"
+        (click)="navegarAlInicio()"
+        *ngIf="paginaPrincipal">
+        {{ paginaPrincipal }}
+      </button>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="user-role" *ngIf="rolUsuario()" [style.background-color]="colorRol()">
+      <span class="role-text">{{ rolUsuario() }}</span>
+    </div>
+    <mat-icon class="hospital-icon">local_hospital</mat-icon>
+    <span class="hospital-text">HOSPITAL</span>
+  </div>
+</div>

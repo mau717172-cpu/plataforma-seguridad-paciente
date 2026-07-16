@@ -1,0 +1,72 @@
+<div class="page-layout">
+  <app-header [paginaActual]="'Mi perfil'" [paginaPrincipal]="'Menú Principal'"></app-header>
+  <div class="content-wrapper">
+    <app-sidebar></app-sidebar>
+    <main class="main-content">
+      <div class="page-container">
+        <h2>Mi Perfil</h2>
+        <p>Revisa tu información y el estado de tus asignaciones médicas.</p>
+
+        <div class="profile-grid">
+          <div class="profile-card">
+            <span class="card-label">Id</span>
+            <strong>{{ perfil.id || '—' }}</strong>
+          </div>
+          <div class="profile-card">
+            <span class="card-label">Nombre</span>
+            <strong>{{ perfil.nombre || '—' }}</strong>
+          </div>
+          <div class="profile-card wide-card">
+            <span class="card-label">Área médica asignada</span>
+            <strong>{{ perfil.areaMedica || '—' }}</strong>
+          </div>
+
+          <ng-container *ngIf="esClinico()">
+            <div class="profile-card wide-card">
+              <span class="card-label">Lista de pacientes asignados</span>
+              <ul class="item-list">
+                <li class="item" *ngFor="let patient of perfil.pacientesAsignados">{{ patient }}</li>
+                <li class="empty-note" *ngIf="perfil.pacientesAsignados.length === 0">No hay pacientes asignados.</li>
+              </ul>
+            </div>
+          </ng-container>
+
+          <div class="profile-card wide-card">
+            <span class="card-label">Simulaciones recomendadas</span>
+            <ul class="item-list">
+              <li class="item" *ngFor="let simulation of perfil.simulacionesRecomendadas">{{ simulation }}</li>
+              <li class="empty-note" *ngIf="perfil.simulacionesRecomendadas.length === 0">No hay simulaciones recomendadas.</li>
+            </ul>
+          </div>
+
+          <ng-container *ngIf="esClinico()">
+            <div class="profile-card wide-card">
+              <span class="card-label">Reportes pendientes</span>
+              <ul class="item-list">
+                <li class="item" *ngFor="let report of perfil.reportesPendientes">{{ report }}</li>
+                <li class="empty-note" *ngIf="perfil.reportesPendientes.length === 0">No hay reportes pendientes.</li>
+              </ul>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="!esClinico()">
+            <div class="profile-card wide-card">
+              <span class="card-label">Reportes adjuntos</span>
+              <ul class="item-list">
+                <li class="item" *ngFor="let report of perfil.reportesAdjuntos">{{ report }}</li>
+                <li class="empty-note" *ngIf="perfil.reportesAdjuntos.length === 0">No hay reportes adjuntos.</li>
+              </ul>
+            </div>
+            <div class="profile-card wide-card">
+              <span class="card-label">Próximas citas</span>
+              <ul class="item-list">
+                <li class="item" *ngFor="let appointment of perfil.proximasCitas">{{ appointment }}</li>
+                <li class="empty-note" *ngIf="perfil.proximasCitas.length === 0">No hay citas programadas.</li>
+              </ul>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

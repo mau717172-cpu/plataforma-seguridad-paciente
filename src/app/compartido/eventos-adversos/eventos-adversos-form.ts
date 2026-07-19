@@ -125,15 +125,33 @@ export class EventosAdversosForm {
   }
 
   submitReport() {
-    console.log('Guardar reporte', {
-      patientId: this.patientId,
-      phase: this.selectedPhase,
-      preoperative: this.preoperativeChecks,
-      medication: this.medicationChecks,
-      psychosocial: this.psychosocialChecks,
-      observaciones: this.observaciones,
-      requiereSeguimiento: this.requiereSeguimiento
-    });
+  const reporteform = {
+    
+    patientId: this.patientId,
+    patientInfo: this.patientInfo,
+    selectedPhase: this.selectedPhase,
+    preoperatorio: this.preoperativeChecks,
+    operatorio: this.operatorioChecks,
+    postoperatorio: this.postoperatorioChecks,
+    medicamentos: this.medicationChecks,
+    psicosocial: this.psychosocialChecks,
+    observaciones: this.observaciones,
+    requiereSeguimiento: this.requiereSeguimiento
+
+    };
+      console.log(reporte);
     alert('Formulario de reporte guardado (simulado).');
   }
+  //CUANDO SE TENGA LA BASE DE DATOS, SE CAMBIA EL CONSOLE.LOG POR ESTE CODIGO
+//this.http.post(
+  //  "https://mi-api.com/eventos-adversos",
+    //reporteEventoAdverso
+//).subscribe({
+  //  next: (respuesta) => {
+    //    console.log("Reporte guardado correctamente", respuesta);
+    //},
+    //error: (error) => {
+      //  console.error("Error al guardar", error);
+    //}
+//});
 }
